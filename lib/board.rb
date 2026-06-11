@@ -16,11 +16,24 @@ class Board
     end
   end
 
+  def print_board
+    y_axis, x_axis = 6, 7
+    y_axis.times do |y|
+      y = y_axis - y
+      x_axis.times do |x|
+        x = x + 1
+        print "#{game_board[[x, y]].symbol}  "
+#        print "[#{x}, #{y}]  "
+        puts if x.eql?(7)
+      end
+    end
+  end
+
   def take_slot(x_choice, owner)
     y_choice = find_lowest_y(x_choice, owner)
-    puts y_choice
-    game_board[[y_choice, x_choice]].symbol = owner.symbol
-    game_board[[y_choice, x_choice]].owner =  owner.player_name
+#    puts y_choice
+    game_board[[x_choice, y_choice]].symbol = owner.symbol
+    game_board[[x_choice, y_choice]].owner =  owner.player_name
   end
 
   def find_lowest_y(x, owner)
@@ -39,15 +52,13 @@ class Board
 
 end
 
-board = Board.new
-player_1 = Player.new('p1', 'O')
-player_2 = Player.new('p2', 'X')
-x = board.find_lowest_y(1, player_1)
-board.take_slot(x, player_1)
-board.print_board
-x = board.find_lowest_y(1, player_2)
-board.take_slot(x, player_2)
-board.print_board
-
-
+#board = Board.new
+#player_1 = Player.new('p1', 'O')
+#player_2 = Player.new('p2', 'X')
+#x = board.find_lowest_y(1, player_1)
+#board.take_slot(x, player_1)
+#board.print_board
+#x = board.find_lowest_y(2, player_2)
+#board.take_slot(x, player_2)
+#board.print_board
 
