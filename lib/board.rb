@@ -7,6 +7,12 @@ class Board
     @x_axis = (1..7)
     @y_axis = (1..6)
     @game_board = {}
+    @checks = { 
+               lu: [-1, 1], l: [-1, 0], ld: [-1, -1], 
+               d: [ 0, -1], rd: [1, -1],
+               r:  [1, 0], ru: [1, 1] 
+              } 
+    @CONNECT_FOUR = 4
     make_board
   end
 
@@ -31,7 +37,6 @@ class Board
 
   def take_slot(x_choice, owner)
     y_choice = find_lowest_y(x_choice, owner)
-#    puts y_choice
     game_board[[x_choice, y_choice]].symbol = owner.symbol
     game_board[[x_choice, y_choice]].owner =  owner.player_name
   end
@@ -39,17 +44,6 @@ class Board
   def find_lowest_y(x, owner)
     y_axis.each { |y| game_board[[x, y]].owner.nil? ? (return y) : next }
   end
-
-
-#  def print_board
-#    y_axis.each do |y|
-#      x_axis.each do |x| 
-#        print "#{game_board[[x, y]].symbol}  "
-#        puts if x.eql?(7)
-#      end
-#    end
-#  end
-
 end
 
 #board = Board.new
