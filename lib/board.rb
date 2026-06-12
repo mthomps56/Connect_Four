@@ -16,6 +16,17 @@ class Board
     make_board
   end
 
+  def win_check(dir, matches = 1)
+    return nil if game_board[dir].nil?
+    winner if matches.eql?(CONNECT_FOUR) 
+    game_board[piece].owner.eql?(next_piece) ? win_check(dir, matches += 1)
+                                             : return nil
+  end
+
+  def check_directions
+    checks.each_value { |next_piece| win_check(next_piece) }
+  end
+
   def make_board
     x_axis.each do |x|
       y_axis.each { |y| game_board[[x, y]] = Slot.new }
