@@ -1,13 +1,12 @@
 class Player
-  attr_accessor :player_name, :symbol
+  attr_accessor :name, :symbol
 
-  def initialize(player_name, symbol)
-    @player_name = player_name
+  def initialize(name, symbol)
+    @name = name
     @symbol = symbol
   end
 
   def pick_slot
     choice = gets.chomp
   end
-
 end
