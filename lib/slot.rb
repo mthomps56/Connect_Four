@@ -1,8 +1,8 @@
 class Slot
-  attr_accessor :symbol, :owner 
+  attr_accessor :symbol, :player 
 
-  def initialize(symbol = '*', owner = nil)
+  def initialize(symbol = '*', player = nil)
     @symbol = symbol
-    @owner = owner
+    @player = player
   end
 end

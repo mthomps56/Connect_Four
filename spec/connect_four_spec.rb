@@ -1,6 +1,7 @@
 require './lib/player'
 require './lib/slot'
 require './lib/board'
+require './lib/game'
 
 RSpec.describe Player do
   describe 'is a player' do

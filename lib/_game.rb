@@ -14,6 +14,7 @@ class Game
 
   def connect_four?(consecutive_pieces)
     x = consecutive_pieces.eql?(connect_four) ? true : false
+    puts "inside connect_4? method: #{x}"
     return x
   end
 
@@ -30,6 +31,25 @@ class Game
     end
   end
 
+  def _run_checks(game_board, pos, player, win = false)
+    checks.each_value do |dir| 
+      connections = 1
+      nxt_pos = move(pos, dir)
+      puts "before while: #{nxt_pos}" 
+      next unless valid_move?(nxt_pos)
+      puts "after next"
+      while game_board[pos].player == game_board[nxt_pos].player
+        connections += 1
+        nxt_pos = move(nxt_pos, dir)
+        puts "in while, after move: #{nxt_pos}"
+        if connections.eql?(connect_four)
+          puts "you are winner"
+          break
+        end
+      end
+    end
+  end
+
   def run_checks(game_board, pos, win = false)
     checks.each_value do |dir|
       connections = 1
@@ -39,6 +59,7 @@ class Game
         break if nxt_pos.nil? 
         break unless game_board[pos].player == game_board[nxt_pos].player
         connections +=1
+        puts "connections #{connections}"
       end
       win = connect_four?(connections) 
       break if win

@@ -21,4 +21,8 @@ PLAYER_1_TURN = "Player_1's turn: > "
 PLAYER_2_TURN = "Player_2's turn: > "
 
 ROW_NUMBERS = "1  2  3  4  5  6  7"
+
+  def declare_winner(player)
+    puts "#{player.name} WINS! Connect 4!!!!"
+  end
 end

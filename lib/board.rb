@@ -9,13 +9,15 @@ class Board
     @game_board = {}
     make_board
   end
-
+  
+  # Creates the Connect Four board upon instantiation of the board class. 
   def make_board
     x_axis.each do |x|
       y_axis.each { |y| game_board[[x, y]] = Slot.new }
     end
   end
 
+  # Prints the board with the most recent update to each slot's owner
   def print_board
     y_axis, x_axis = 6, 7
     y_axis.times do |y|
@@ -29,17 +31,19 @@ class Board
     end
   end
 
-  def take_slot(x_choice, owner)
-    y_choice = find_lowest_y(x_choice, owner)
-    game_board[[x_choice, y_choice]].symbol = owner.symbol
-    game_board[[x_choice, y_choice]].owner =  owner.name
-    return game_board[[x_choice, y_choice]].owner
+  # A player, upon their turn takes the next available slot in column, setting
+  # the symbol and player attributes of the chosen slot to that players. 
+  def take_slot(x_choice, player)
+    y_choice = find_lowest_y(x_choice)
+    game_board[[x_choice, y_choice]].symbol = player.symbol
+    game_board[[x_choice, y_choice]].player =  player.name
+    return [x_choice, y_choice]
   end
-
-  def find_lowest_y(x, owner)
-    y_axis.each { |y| game_board[[x, y]].owner.nil? ? (return y) : next }
+  
+  # Finds the lowest possible slot (it's 'y' position) in the chosen column 
+  # (it's 'x' position)
+  def find_lowest_y(x)#, player)
+    y_axis.each { |y| game_board[[x, y]].player.nil? ? (return y) : next }
   end
 end
 
-board = Board.new
-board.print_board
