@@ -1,3 +1,8 @@
+# frozen_string_literal: true
+
+# Player 1 and Player 2 are each represented by their own object
+# that has information about their symbol that represents their pieces,
+# and their name.
 class Player
   attr_accessor :name, :symbol, :turn_message
 
@@ -7,7 +12,7 @@ class Player
     @turn_message = turn_message
   end
 
-  def pick_slot(flag = true)
+  def pick_slot(flag: true)
     choice = nil
     while flag
       announce_turn

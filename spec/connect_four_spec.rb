@@ -20,8 +20,8 @@ RSpec.describe Player do
   end
 end
 
-RSpec.describe Slot do 
-  describe 'is a slot' do 
+RSpec.describe Slot do
+  describe 'is a slot' do
     subject(:slot) { described_class.new }
     it 'is a slot ' do
       expect(slot).to be_kind_of(Slot)
@@ -31,14 +31,11 @@ end
 
 RSpec.describe Board do
   describe 'creates a board full of slots' do
-    subject(:board) { described_class.new } 
-    it 'is a board full of slot objects' do 
+    subject(:board) { described_class.new }
+    it 'is a board full of slot objects' do
       board.game_board.each_value do |slot|
         expect(slot).to be_kind_of(Slot)
       end
     end
   end
 end
-
-
-
